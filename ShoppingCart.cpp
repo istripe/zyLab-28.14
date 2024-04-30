@@ -25,25 +25,42 @@ void ShoppingCart::AddItem(ItemToPurchase item) {
 
 void ShoppingCart::RemoveItem(ItemToPurchase item) {
    string name = item.GetName();
-   for (auto it = cartItems.begin() ; it != cartItems.end(); ++it) {
-      if (name == it->GetName() ) {
-         cartItems.erase(it);
-         break;
+   bool exists = false;
+   if (cartItems.size() == 0) {
+      cout << "Item not found in cart. Nothing removed.";
+   }
+   else{
+      for (auto it = cartItems.begin() ; it != cartItems.end(); ++it) {
+         if (name == it->GetName() ) {
+            cartItems.erase(it);
+            exists = true;
+            break;
+         }
+      }
+      if (exists == false) {
+         cout << "Item not found in cart. Nothing removed." << endl;
       }
    }
 }
 
-void ShoppingCart::ModifyItem(ItemToPurchase item) {
+void ShoppingCart::ModifyItem(ItemToPurchase item, int num) {
    string name = item.GetName();
+   bool exists = false;
    for (auto it = cartItems.begin() ; it != cartItems.end(); ++it) {
       if (name == it->GetName() ) {
-         if (item.GetPrice() != 0) {
-            it->SetPrice(item.GetPrice());
-         }
-         if (item.GetQuantity() != 0) {
-            it->SetQuantity(item.GetQuantity());
+         /*if (item.GetPrice() == 0) {
+            it->SetPrice(num);
+         }*/
+         if (item.GetQuantity() == 0) {
+            it->SetQuantity(num);
+            exists = true;
+            cout << "Item quantity changed." << endl;
+            break;
          }
       }
+   }
+   if (exists == false) {
+      cout <<"Item not found in cart. Nothing modified." << endl;
    }
 }
 
@@ -67,17 +84,28 @@ void ShoppingCart::PrintTotal() {
    cout << customerName << "'s Shopping Cart - " << currentDate << endl
       << "Number of Items: " << GetNumItemsInCart() << endl << endl;
    
-   // for loop using iterators
-   for (auto it = cartItems.begin() ; it != cartItems.end(); ++it) {
-      it->PrintItemCost();
+   if (cartItems.empty())
+      cout << "SHOPPING CART IS EMPTY" << endl;
+   else {
+      // for loop using iterators
+      for (auto it = cartItems.begin() ; it != cartItems.end(); ++it) {
+         it->PrintItemCost();
+      }
+      // in general, if you have a pointer or an iterator, (*obj).member == obj->member
    }
-   // in general, if you have a pointer or an iterator, (*obj).member == obj->member
    
    cout << endl << "Total: $" << GetCostOfCart() << endl;
 }
 
 void ShoppingCart::PrintDescriptions() {
-   for (auto it = cartItems.begin() ; it != cartItems.end(); ++it) {
-      it->PrintItemDescription();
+   cout << customerName << "'s Shopping Cart - " << currentDate << endl << endl;
+   cout << "Item Descriptions" << endl;
+   if (cartItems.empty()) {
+      cout << "SHOPPING CART IS EMPTY" << endl;
+   }
+   else {
+      for (auto it = cartItems.begin() ; it != cartItems.end(); ++it) {
+         it->PrintItemDescription();
+      }  
    }
 }
