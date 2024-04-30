@@ -1,4 +1,4 @@
-#include <iostream>
+ include <iostream>
 #include <iomanip>
 using namespace std;
 
@@ -22,14 +22,16 @@ bool ExecuteMenu(char option, ShoppingCart& theCart) {
          cout << "ADD ITEM TO CART" << endl;
          cout << "Enter the item name:" << endl;
          string name;
-         cin.ignore(); // Clear the input buffer before using getline
          getline(cin, name);
+         
          cout << "Enter the item description:" << endl;
          string description;
          getline(cin, description);
+         
          cout << "Enter the item price:" << endl;
          int price;
          cin >> price;
+         
          cout << "Enter the item quantity:" << endl;
          int quantity;
          cin >> quantity;
@@ -45,7 +47,6 @@ bool ExecuteMenu(char option, ShoppingCart& theCart) {
          cout << "REMOVE ITEM FROM CART" << endl;
          cout << "Enter name of item to remove:" << endl;
          string itemName;
-         cin.ignore(); // Clear the input buffer before using getline
          getline(cin, itemName);
          theCart.RemoveItem(itemName);
          break;
@@ -56,19 +57,18 @@ bool ExecuteMenu(char option, ShoppingCart& theCart) {
          cout << "CHANGE ITEM QUANTITY" << endl;
          cout << "Enter the item name:" << endl;
          string itemName;
-         cin.ignore(); // Clear the input buffer before using getline
          getline(cin, itemName);
          cout << "Enter the new quantity:" << endl;
          int newQuantity;
          cin >> newQuantity;
-         theCart.ModifyItem(itemName);
-         cout << "Item quantity changed." << endl;
+         theCart.ModifyItem(itemName, newQuantity);
          break;
       }
       
       case 'i': {
          //Output items' descriptions
          cout << "OUTPUT ITEMS' DESCRIPTIONS" << endl;
+
          theCart.PrintDescriptions();
          break;
       }
