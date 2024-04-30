@@ -11,7 +11,6 @@ private:
    string description;
    int price;
    int quantity;
-   int total;
    
 public:
    ItemToPurchase();
@@ -19,7 +18,7 @@ public:
    ItemToPurchase(string name);
    
    // new, extended constructor
-   ItemToPurchase(string name, string description, int price, int quantity, int total);
+   ItemToPurchase(string name, string description, int price, int quantity);
    
    void SetName(string name);
    
@@ -36,8 +35,6 @@ public:
    void SetQuantity(int quantity);
    
    int GetQuantity();
-   
-   void SetTotal(int total);
    
    int GetTotal();
    
