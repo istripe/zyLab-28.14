@@ -2,8 +2,6 @@
 using namespace std;
 
 #include "ItemToPurchase.h"
-
-/* Type your code here */
    
    ItemToPurchase::ItemToPurchase() {
    }
@@ -56,17 +54,12 @@ using namespace std;
       return quantity;
    }
    
-   void ItemToPurchase::SetTotal(int itemTotal) {
-      total = itemTotal;
-   }
-   
    int ItemToPurchase::GetTotal() {
-      return total;
+      return quantity*price;
    }
    
    void ItemToPurchase::PrintItemCost() {
-      SetTotal(price*quantity);
-      cout << name << " " << quantity <<  " @ $" << price << " = $" << total << endl;
+      cout << name << " " << quantity <<  " @ $" << price << " = $" << GetTotal() << endl;
    }
    
    void ItemToPurchase::PrintItemDescription() {
