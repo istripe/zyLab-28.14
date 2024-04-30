@@ -26,7 +26,7 @@ public:
    
    void RemoveItem(ItemToPurchase item);
    
-   void ModifyItem(ItemToPurchase item);
+   void ModifyItem(ItemToPurchase item, int num);
    
    int GetNumItemsInCart();
    
