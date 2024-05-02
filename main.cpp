@@ -1,3 +1,6 @@
+// https://github.com/istripe/zyLab-28.14.git
+// Team members: Ian Stripe and Benjamin Ahn
+
 #include <iostream>
 #include <iomanip>
 using namespace std;
